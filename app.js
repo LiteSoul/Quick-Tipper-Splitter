@@ -1,18 +1,24 @@
 const cost = document.querySelector('#cost')
-const tipPercent = document.querySelector('#tipPercent')
+const tipPercent = document.querySelector('#tip-percent')
 const tip = document.querySelector('#tip')
 const peoples = document.querySelector('#peoples')
-const people = document.querySelector('#people')
+const peopleCost = document.querySelector('#people-cost')
 const total = document.querySelector('#total')
 
-cost.addEventListener('keyup', tipcalc)
-tipPercent.addEventListener('keyup', tipCalc)
-peoples.addEventListener('keyup', peopleCalc)
+cost.addEventListener('keyup', totalCalc)
+tipPercent.addEventListener('keyup', totalCalc)
+peoples.addEventListener('keyup', totalCalc)
 
 function tipCalc() {
-	tip.value = cost.value * (tipPercent.value / 100 || 0.1)
+	tip.value = Number(cost.value) * (Number(tipPercent.value) / 100 || 0.1)
 }
 
-function peopleCalc() {}
+function peopleCalc() {
+	peopleCost.value = Number(total.value) / (Number(peoples.value) || 1)
+}
 
-function totalCalc() {}
+function totalCalc() {
+	tipCalc()
+	peopleCalc()
+	total.value = Number(cost.value) + Number(tip.value)
+}
