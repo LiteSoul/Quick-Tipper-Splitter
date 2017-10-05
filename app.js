@@ -44,3 +44,15 @@ function tipCalcBtn() {
 	tipPercent.value = this.value
 	grandTotal()
 }
+
+//The Person Buttons:
+const personBtn = document.querySelectorAll('.person-btn')
+
+Array.from(personBtn).forEach(link => {
+	link.addEventListener('click', personCalcBtn)
+})
+
+function personCalcBtn() {
+	persons.value = this.value
+	grandTotal()
+}
