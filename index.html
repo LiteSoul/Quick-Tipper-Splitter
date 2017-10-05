@@ -5,31 +5,60 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Thin Tippper 'n' Splitter</title>
-	<link rel="stylesheet" href="mini-dark.min.css">
+	<title>Quick Tipper n' Splitter</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
+	<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css">
+	<link rel="stylesheet" href="app.css">
 </head>
 
 <body>
-
-	<div id="app"></div>
-
-	<label for="cost">Food cost:</label>
-	<input type="number" min="0" id="cost" placeholder="100">
-	<label for="tip-percent">Tip Percentage:</label>
-	<input type="number" min="0" id="tip-percent" placeholder="10">
-	<label for="tip">Tip:</label>
-	<input type="number" min="0" id="tip" placeholder="10">
-	<br>
-	<label for="peoples">By how many people we shold divide the cost:</label>
-	<input type="number" min="0" id="peoples" placeholder="1">
-	<label for="people-cost">Each would pay:</label>
-	<input type="number" min="0" id="people-cost" placeholder="11">
-	<br>
-	<label for="total">Grand total:</label>
-	<input type="number" min="0" id="total" placeholder="110">
-
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.2/vue.min.js "></script>
-	<!-- <script src="https://unpkg.com/axios@0.16.2/dist/axios.min.js "></script> -->
+	<div class="content">
+		<form class="pure-form pure-form-aligned">
+			<fieldset>
+				<legend>Quick Tipper n' Splitter</legend>
+				<div class="pure-control-group">
+					<label for="cost">Food Cost</label>
+					<input type="number" min="0" id="cost" placeholder="100">
+				</div>
+				<div class="pure-control-group">
+					<label>Tip:</label>
+					<button value='5' class="tip-btn pure-button" type="button">5%</button>
+					<button value="10" class="tip-btn pure-button pure-button-primary" type="button">10%</button>
+					<button value="15" class="tip-btn pure-button" type="button">15%</button>
+					<input hidden type="number" min="0" id="tip-percent" value="10">
+				</div>
+				<div class="pure-control-group">
+					<label for="tip">So the tip is:</label>
+					<input type="number" min="0" id="tip" placeholder="10" readonly>
+				</div>
+				<div class="pure-control-group">
+					<label for="persons">How many are you?</label>
+					<button value='1' class="tip-btn pure-button pure-button-primary" type="button">1</button>
+					<button value="2" class="tip-btn pure-button" type="button">2</button>
+					<button value="3" class="tip-btn pure-button" type="button">3</button>
+					<button value="4" class="tip-btn pure-button" type="button">4</button>
+					<button value="5" class="tip-btn pure-button" type="button">5</button>
+					<input hidden type="number" min="0" id="persons" value="1">
+				</div>
+				<div class="pure-control-group">
+					<label for="persons"></label>
+					<button value="6" class="tip-btn pure-button" type="button">6</button>
+					<button value="7" class="tip-btn pure-button" type="button">7</button>
+					<button value="8" class="tip-btn pure-button" type="button">8</button>
+					<button value="9" class="tip-btn pure-button" type="button">9</button>
+					<button value="10" class="tip-btn pure-button" type="button">10</button>
+				</div>
+				<div class="pure-control-group">
+					<label for="cost-per-person">So each would pay</label>
+					<input type="number" min="0" id="cost-per-person" placeholder="11" readonly>
+				</div>
+				<div class="pure-control-group">
+					<label for="total">Grand total:</label>
+					<input type="number" min="0" id="total" placeholder="110" readonly>
+				</div>
+			</fieldset>
+		</form>
+	</div>
 	<script src="app.js "></script>
 </body>
 

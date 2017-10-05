@@ -1,24 +1,46 @@
 const cost = document.querySelector('#cost')
 const tipPercent = document.querySelector('#tip-percent')
 const tip = document.querySelector('#tip')
-const peoples = document.querySelector('#peoples')
-const peopleCost = document.querySelector('#people-cost')
+const persons = document.querySelector('#persons')
+const costPerPerson = document.querySelector('#cost-per-person')
 const total = document.querySelector('#total')
 
-cost.addEventListener('keyup', totalCalc)
-tipPercent.addEventListener('keyup', totalCalc)
-peoples.addEventListener('keyup', totalCalc)
+cost.addEventListener('keydown', grandTotal)
+cost.addEventListener('keyup', grandTotal)
+tipPercent.addEventListener('keydown', grandTotal)
+tipPercent.addEventListener('keyup', grandTotal)
+persons.addEventListener('keydown', grandTotal)
+persons.addEventListener('keyup', grandTotal)
 
-function tipCalc() {
-	tip.value = Number(cost.value) * (Number(tipPercent.value) / 100 || 0.1)
+function grandTotal() {
+	totalCalc()
+	tipCalc()
+	personCalc()
+	totalCalc()
+	tipCalc()
+	personCalc()
 }
 
-function peopleCalc() {
-	peopleCost.value = Number(total.value) / (Number(peoples.value) || 1)
+function tipCalc() {
+	tip.value = Math.round(cost.value * (tipPercent.value / 100))
+}
+
+function personCalc() {
+	costPerPerson.value = Math.ceil(total.value / persons.value)
 }
 
 function totalCalc() {
-	tipCalc()
-	peopleCalc()
 	total.value = Number(cost.value) + Number(tip.value)
+}
+
+//The TIP Buttons:
+const tipBtn = document.querySelectorAll('.tip-btn')
+
+Array.from(tipBtn).forEach(link => {
+	link.addEventListener('click', tipCalcBtn)
+})
+
+function tipCalcBtn() {
+	tipPercent.value = this.value
+	grandTotal()
 }
