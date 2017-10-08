@@ -12,47 +12,49 @@ tipPercent.addEventListener('keyup', grandTotal)
 persons.addEventListener('keydown', grandTotal)
 persons.addEventListener('keyup', grandTotal)
 
-function grandTotal() {
-	totalCalc()
-	tipCalc()
-	personCalc()
-	totalCalc()
-	tipCalc()
-	personCalc()
-}
-
-function tipCalc() {
-	tip.value = Math.round(cost.value * (tipPercent.value / 100))
-}
-
-function personCalc() {
-	costPerPerson.value = Math.ceil(total.value / persons.value)
-}
-
-function totalCalc() {
-	total.value = Number(cost.value) + Number(tip.value)
-}
-
 //The TIP Buttons:
-const tipBtn = document.querySelectorAll('.tip-btn')
+const tipButtons = document.querySelectorAll('.tip-btn')
 
-Array.from(tipBtn).forEach(link => {
+Array.from(tipButtons).forEach(link => {
 	link.addEventListener('click', tipCalcBtn)
 })
 
 function tipCalcBtn() {
 	tipPercent.value = this.value
+	blueClassRemover(tipButtons)
+	this.classList.add('pure-button-primary')
 	grandTotal()
 }
 
 //The Person Buttons:
-const personBtn = document.querySelectorAll('.person-btn')
+const personButtons = document.querySelectorAll('.person-btn')
 
-Array.from(personBtn).forEach(link => {
-	link.addEventListener('click', personCalcBtn)
+Array.from(personButtons).forEach(link => {
+	link.addEventListener('click', personCalcBtn())
 })
 
 function personCalcBtn() {
 	persons.value = this.value
+	blueClassRemover(personButtons)
+	this.classList.add('pure-button-primary')
 	grandTotal()
+}
+
+//Toggles blue button class
+function blueClassRemover(hereBtn) {
+	Array.from(hereBtn).forEach(link =>
+		link.classList.remove('pure-button-primary')
+	)
+}
+
+//Calculations
+function calculations() {
+	tip.value = Math.round(cost.value * (tipPercent.value / 100))
+	costPerPerson.value = Math.ceil(total.value / persons.value)
+	total.value = Number(cost.value) + Number(tip.value)
+}
+
+function grandTotal() {
+	calculations()
+	calculations()
 }
