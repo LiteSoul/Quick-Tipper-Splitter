@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Quick Tipper n' Splitter</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
+	<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css">
+	<style>
+		.content {
+			margin: 0 auto;
+			padding: 0 2em;
+			max-width: 800px;
+			margin-bottom: 50px;
+			line-height: 1.6em;
+		}
+
+		input[type='number']::-webkit-inner-spin-button,
+		input[type='number']::-webkit-outer-spin-button {
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+			margin: 0;
+		}
+	</style>
+</head>
+
+<body>
+
+	<div class="content">
+		<form class="pure-form pure-form-aligned">
+			<fieldset>
+				<legend>Quick Tipper n' Splitter</legend>
+				<div class="pure-control-group">
+					<label for="cost">Food Cost</label>
+					<input type="number" min="0" id="cost" placeholder="100">
+				</div>
+				<div class="pure-control-group">
+					<label>Tip:</label>
+					<button value='10' class="tip-btn pure-button" type="button">10%</button>
+					<button value="15" class="tip-btn pure-button pure-button-primary" type="button">15%</button>
+					<button value="20" class="tip-btn pure-button" type="button">20%</button>
+					<input hidden type="number" min="0" id="tip-percent" value="15">
+				</div>
+				<div class="pure-control-group">
+					<label for="tip">So the tip is:</label>
+					<input type="number" min="0" id="tip" placeholder="15" readonly>
+				</div>
+				<div class="pure-control-group">
+					<label>How many are you?</label>
+					<button value='1' class="person-btn pure-button pure-button-primary" type="button">1</button>
+					<button value="2" class="person-btn pure-button" type="button">2</button>
+					<button value="3" class="person-btn pure-button" type="button">3</button>
+					<button value="4" class="person-btn pure-button" type="button">4</button>
+					<button value="5" class="person-btn pure-button" type="button">5</button>
+					<input hidden type="number" min="0" id="persons" value="1">
+				</div>
+				<div class="pure-control-group">
+					<label></label>
+					<button value="6" class="person-btn pure-button" type="button">6</button>
+					<button value="7" class="person-btn pure-button" type="button">7</button>
+					<button value="8" class="person-btn pure-button" type="button">8</button>
+					<button value="9" class="person-btn pure-button" type="button">9</button>
+					<button value="10" class="person-btn pure-button" type="button">10</button>
+				</div>
+				<div class="pure-control-group">
+					<label for="cost-per-person">So each would pay</label>
+					<input type="number" min="0" id="cost-per-person" placeholder="110" readonly>
+				</div>
+				<div class="pure-control-group">
+					<label for="total">Grand total:</label>
+					<input type="number" min="0" id="total" placeholder="110" readonly>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+
+	<script>
+		const cost = document.querySelector('#cost'), tipPercent = document.querySelector('#tip-percent'), tip = document.querySelector('#tip'), persons = document.querySelector('#persons'), costPerPerson = document.querySelector('#cost-per-person'), total = document.querySelector('#total'); cost.addEventListener('keydown', grandTotal), cost.addEventListener('keyup', grandTotal), tipPercent.addEventListener('keydown', grandTotal), tipPercent.addEventListener('keyup', grandTotal), persons.addEventListener('keydown', grandTotal), persons.addEventListener('keyup', grandTotal); const tipButtons = document.querySelectorAll('.tip-btn'); Array.from(tipButtons).forEach(a => { a.addEventListener('click', tipCalcBtn) }); function tipCalcBtn() { tipPercent.value = this.value, blueClassRemover(tipButtons), this.classList.add('pure-button-primary'), grandTotal() } const personButtons = document.querySelectorAll('.person-btn'); Array.from(personButtons).forEach(a => { a.addEventListener('click', personCalcBtn()) }); function personCalcBtn() { persons.value = this.value, blueClassRemover(personButtons), this.classList.add('pure-button-primary'), grandTotal() } function blueClassRemover(a) { Array.from(a).forEach(b => b.classList.remove('pure-button-primary')) } function calculations() { tip.value = Math.round(cost.value * (tipPercent.value / 100)), costPerPerson.value = Math.ceil(total.value / persons.value), total.value = +cost.value + +tip.value } function grandTotal() { calculations(), calculations() }
+	</script>
+</body>
+
+</html>

@@ -1,4 +1,4 @@
-# Quick Tipper'n'Splitter
+# Quick Tipper n' Splitter
 
 
 To-do: 
