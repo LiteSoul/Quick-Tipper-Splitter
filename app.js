@@ -30,7 +30,7 @@ function tipCalcBtn() {
 const personButtons = document.querySelectorAll('.person-btn')
 
 Array.from(personButtons).forEach(link => {
-	link.addEventListener('click', personCalcBtn())
+	link.addEventListener('click', personCalcBtn)
 })
 
 function personCalcBtn() {
