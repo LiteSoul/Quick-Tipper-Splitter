@@ -1,32 +1,70 @@
 const cost = document.querySelector('#cost')
 const tipPercent = document.querySelector('#tip-percent')
 const tip = document.querySelector('#tip')
-const peoples = document.querySelector('#peoples')
-const peopleCost = document.querySelector('#people-cost')
+const persons = document.querySelector('#persons')
+const costPerPerson = document.querySelector('#cost-per-person')
 const total = document.querySelector('#total')
 
-cost.addEventListener('keyup', totalCalc)
-tipPercent.addEventListener('keyup', totalCalc)
-peoples.addEventListener('keyup', totalCalc)
+cost.addEventListener('keydown', grandTotal)
+cost.addEventListener('keyup', grandTotal)
+tipPercent.addEventListener('keydown', grandTotal)
+tipPercent.addEventListener('keyup', grandTotal)
+persons.addEventListener('keydown', grandTotal)
+persons.addEventListener('keyup', grandTotal)
 
-function tipCalc() {
-	tip.value = Number(cost.value) * (Number(tipPercent.value) / 100 || 0.1)
+//The TIP Buttons:
+const tipButtons = document.querySelectorAll('.tip-btn')
+
+Array.from(tipButtons).forEach(link => {
+	link.addEventListener('click', tipCalcBtn)
+})
+
+function tipCalcBtn() {
+	tipPercent.value = this.value
+	blueClassRemover(tipButtons)
+	this.classList.add('pure-button-primary')
+	grandTotal()
 }
 
-function peopleCalc() {
-	peopleCost.value = Number(total.value) / (Number(peoples.value) || 1)
+//The Person Buttons:
+const personButtons = document.querySelectorAll('.person-btn')
+
+Array.from(personButtons).forEach(link => {
+	link.addEventListener('click', personCalcBtn)
+})
+
+function personCalcBtn() {
+	persons.value = this.value
+	blueClassRemover(personButtons)
+	this.classList.add('pure-button-primary')
+	grandTotal()
 }
 
-function totalCalc() {
-	tipCalc()
-	peopleCalc()
+//Toggles blue button class
+function blueClassRemover(hereBtn) {
+	Array.from(hereBtn).forEach(link =>
+		link.classList.remove('pure-button-primary')
+	)
+}
+
+//Calculations
+function calculations() {
+	tip.value = Math.round(cost.value * (tipPercent.value / 100))
+	costPerPerson.value = Math.ceil(total.value / persons.value)
 	total.value = Number(cost.value) + Number(tip.value)
 }
 
-//With destructuring
-function tipCalc({ total = 100, tip = 0.15, tax = 0.13 } = {}) {
-	return total + tip * total + tax * total
+function grandTotal() {
+	calculations()
+	calculations()
 }
 
-const bill = tipCalc({ tip: 0.2, total: 200 })
+//With destructuring, TO-DO:
+function mainCalc(
+	{ cost = 100, tipper: tipPercent = 15, persons = 1, total = 115 } = {}
+) {
+	return cost + tipPercent
+}
+
+const bill = mainCalc({ tipper: 20, cost: 400 })
 console.log(bill)

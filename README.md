@@ -9,5 +9,6 @@ To-do:
   2. ~~Tip (to waitres...). (Text on bottom like "Default is 10%") (% of total)~~
   3. ~~Divide. To how many people the sum should be divided? (eg. people who eat)~~
   4. ~~Sum for each person who eat~~
+  5. Refactor to use Destructuring, just for fun
 
   ​
