@@ -1,15 +1,19 @@
 # Quick Tipper n' Splitter
 
+To-do:
 
-To-do: 
-* ~~Reactive calculator. All variables updated in real time, no need for 'confirm' buttons.~~
+* ~~Reactive calculator. All variables updated in real time, no need for
+	'confirm' buttons.~~
 * Visible functionality:
 
-  1. ~~Total cost (of the food)~~
-  2. ~~Tip (to waitres...). (Text on bottom like "Default is 10%") (% of total)~~
-  3. ~~Divide. To how many people the sum should be divided? (eg. people who eat)~~
-  4. ~~Sum for each person who eat~~
-  5. Refactor (in a separate js) to use Destructuring, just for fun
-  6. Refactor (in a separate js) to use For of instead of Array.forEach, just for fun
+	1. ~~Total cost (of the food)~~
+	2. ~~Tip (to waitres...). (Text on bottom like "Default is 10%") (% of
+		total)~~
+	3. ~~Divide. To how many people the sum should be divided? (eg. people who
+		eat)~~
+	4. ~~Sum for each person who eat~~
+	5. Refactor (in a separate js) to use Destructuring, just for fun!
+	6. Refactor (in a separate js) to use For of instead of Array.forEach, just
+		for fun!
 
-  ​
+	​
