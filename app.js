@@ -47,7 +47,7 @@ function blueClassRemover(hereBtn) {
 	)
 }
 
-//Calculations
+//Math Calculations
 function calculations() {
 	tip.value = Math.round(cost.value * (tipPercent.value / 100))
 	costPerPerson.value = Math.ceil(total.value / persons.value)
