@@ -59,7 +59,7 @@ function grandTotal() {
 	calculations()
 }
 
-//With destructuring, TO-DO:
+//With destructuring, TO-DO, keep learning from ES6 from Wes Boss:
 function mainCalc(
 	{ cost = 100, tipper: tipPercent = 15, persons = 1, total = 115 } = {}
 ) {
